@@ -1,0 +1,49 @@
+services:
+  database:
+    image: mysql:8.2.0
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_DATABASE=website
+    command:
+      - mysqld
+      - --character-set-server=utf8mb4
+      - --sql-mode=
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database/src:/var/lib/mysql
+    restart: always
+
+  mail:
+    image: rnwood/smtp4dev:3.1.4
+    command: --smtpport 25 --db /smtp4dev/mails.db --messagestokeep 1000 --sessionstokeep 1000
+    ports:
+      - 81:80
+    volumes:
+      - ./mail/src:/smtp4dev
+    restart: always
+
+  website:
+    build:
+      context: ./website
+      dockerfile: ./docker.dev/Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - WORDPRESS_DB_HOST=database
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=
+      - WORDPRESS_DB_NAME=website
+      - WORDPRESS_DB_CHARSET=utf8mb4
+      - WORDPRESS_DEBUG=1
+      - DEBUG_HOST=host.docker.internal
+      - DEBUG_PORT=9000
+      - DEBUG_KEY=xdebug
+    volumes:
+      - ./website/src:/var/www/html
+      - ./website/docker.dev/var/www/cgi-bin:/var/www/cgi-bin:ro
+      - ./website/docker.dev/var/www/system:/var/www/system:ro
+      - ./website/docker.dev/usr/local/etc/php/conf.d/user.ini:/usr/local/etc/php/conf.d/user.ini:ro
+    ports:
+      - 80:80
+    restart: always

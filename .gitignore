@@ -1,0 +1,4 @@
+/.env
+/database/src
+/mail/src
+/website/src

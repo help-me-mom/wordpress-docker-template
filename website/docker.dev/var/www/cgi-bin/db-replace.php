@@ -27,7 +27,8 @@ ini_set('display_errors', 'yes');
 set_time_limit(0);
 header('Content-Type: text/plain; charset=utf-8');
 
-class Faker implements Serializable {
+class Faker implements Serializable
+{
 
   public $data = '';
 

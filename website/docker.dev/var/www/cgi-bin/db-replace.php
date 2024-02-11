@@ -11,14 +11,22 @@ if (!empty($_GET['from']) && !empty($_GET['to'])) {
   if ($_GET['from'] && $_GET['to']) {
     $replace[] = array(
       'type' => 'any',
-      'source' => 'http://' . $_GET['from'],
-      'value' => 'http://' . $_GET['to'],
+      'source' => $_GET['from'],
+      'value' => $_GET['to'],
     );
-    $replace[] = array(
-      'type' => 'any',
-      'source' => 'https://' . $_GET['from'],
-      'value' => (strpos($_SERVER['HTTP_REFERER'], 'http://') === 0 ? 'http://' : 'https://') . $_GET['to'],
-    );
+    if (strpos($_SERVER['HTTP_REFERER'], 'http://') === 0) {
+      $replace[] = array(
+        'type' => 'any',
+        'source' => 'https://' . $_GET['to'],
+        'value' => 'http://' . $_GET['to'],
+      );
+    } else {
+      $replace[] = array(
+        'type' => 'any',
+        'source' => 'http://' . $_GET['to'],
+        'value' => 'https://' . $_GET['to'],
+      );
+    }
   }
 }
 

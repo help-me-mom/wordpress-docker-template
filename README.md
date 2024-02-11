@@ -20,10 +20,10 @@ Checklist:
   in `FROM`  
   by default the latest one is used
 - [ ] you might want to use a different hostname than `localhost`, because `localhost` won't let you send emails  
-  for example, you can add `127.0.0.1 wp.localhost` to `/etc/hosts` or `C:\Windows\System32\drivers\etc\hosts` file
+  for example, you can add `127.0.0.1 wp.internal` to `/etc/hosts` or `C:\Windows\System32\drivers\etc\hosts` file
 - [ ] you can execute `docker compose up --build` to build and start containers  
   you might need to wait until containers finish their bootstrap: creating databases, downloading WP, etc.
-- [ ] open http://wp.localhost/ to finish WP installations
+- [ ] open http://wp.internal/ to finish WP installations
 - [ ] open http://localhost:81/ to verify you got an email about a new WordPress Website
 - [ ] that's it, now you can commit changes to git and start development
 
@@ -40,7 +40,7 @@ Checklist:
 - [ ] update wordpress version in [`/website/docker.dev/Dockerfile`](./website/docker.dev/Dockerfile) in `FROM`  
   you should use the same version as in the existing project
 - [ ] you might want to use a different hostname than `localhost`, because `localhost` won't let you send emails  
-  for example, you can add `127.0.0.1 wp.localhost` to `/etc/hosts` or `C:\Windows\System32\drivers\etc\hosts` file
+  for example, you can add `127.0.0.1 wp.internal` to `/etc/hosts` or `C:\Windows\System32\drivers\etc\hosts` file
 - [ ] copy files from the existing project into [`/website/src`](./website/src)
 - [ ] update [`wp-config.php`](./website/src/wp-config.php) to respect local database connection  
   if you have defined `DB_NAME`, `DB_USER`, `DB_HOST`, etc, you need wrap them with an if-else block:
@@ -59,8 +59,8 @@ Checklist:
 - [ ] you can execute `docker compose up --build` to build and start containers  
   you might need to wait until containers finish their bootstrap: creating databases, etc.
 - [ ] import the database dump: [instructions how to import a database](#import-database)
-- [ ] replace domain name in the database: http://wp.localhost/cgi-bin/
-- [ ] open http://wp.localhost/ to verify website works locally as expected
+- [ ] replace domain name in the database: http://wp.internal/cgi-bin/
+- [ ] open http://wp.internal/ to verify website works locally as expected
 - [ ] that's it, now you can commit changes to git and start development
 
 ### Export database

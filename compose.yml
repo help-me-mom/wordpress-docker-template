@@ -43,9 +43,11 @@ services:
       - DEBUG_KEY=xdebug
     volumes:
       - ./website/src:/var/www/html
+      - ./website/ssl:/ssl
       - ./website/docker.dev/var/www/cgi-bin:/var/www/cgi-bin:ro
       - ./website/docker.dev/var/www/system:/var/www/system:ro
       - ./website/docker.dev/usr/local/etc/php/conf.d/user.ini:/usr/local/etc/php/conf.d/user.ini:ro
     ports:
       - 80:80
+      - 443:443
     restart: always

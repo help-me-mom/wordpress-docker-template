@@ -1,6 +1,6 @@
 services:
   database:
-    image: mysql:8.4.2
+    image: mysql:9.0.1
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
       - MYSQL_DATABASE=website

@@ -14,7 +14,7 @@ Checklist:
 
 - [ ] clone / download this repo: https://github.com/help-me-mom/wordpress-docker-template
 - [ ] remove the line with `/website/src` from [`.gitignore`](./.gitignore)
-- [ ] if needed, update mysql version in [`compose.yml`](./compose.yml) in `services > databse > image`  
+- [ ] if needed, update mysql version in [`compose.yml`](./compose.yml) in `services > database > image`  
   by default the latest one is used
 - [ ] if needed, update wordpress version in [`website/docker.dev/Dockerfile`](./website/docker.dev/Dockerfile)
   in `FROM`  

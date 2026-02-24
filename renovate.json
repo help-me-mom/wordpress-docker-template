@@ -4,7 +4,7 @@
     ":semanticCommits",
     ":semanticCommitTypeAll(chore)"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "main"
   ],
   "dependencyDashboard": false,
